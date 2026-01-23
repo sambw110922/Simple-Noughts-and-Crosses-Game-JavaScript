@@ -1,11 +1,9 @@
 # Simple-Noughts-and-Crosses-Game-JavaScript
 A simple noughts and crosses (tic tac toe) game using HTML, CSS and JavaScript.
 
-Noughts and Crosses Game in HTML and JavaScript
-
 About
 
-This is a Noughts and Crosses (tic tac toe) game that I made using HTML and JavaScript.
+This is a simple Noughts and Crosses (tic tac toe) game that I made using HTML and JavaScript. It is an example project.
 
 Includes
 
