@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+
+        <title>Noughts and Crosses Game</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <style>
+
+/*
+    Noughts crosses style
+    January 18 2026
+    This is the main style sheet for the noughts and crosses simple game.
+*/
+
+html, body {
+    background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+nav {
+    text-align: center;
+    background-color: skyblue;
+    padding: 5%;
+    margin: 0;
+}
+
+main {
+    padding: 2%;
+}
+
+#game, footer {
+    text-align: center;
+}
+
+footer {
+    padding: 5%;
+    margin: 5%;
+}
+
+#buttonBoard {
+    padding: 2%;
+    margin: 5px; 
+    background-color: black;
+}
+
+#btnPlay {
+    padding: 2%;
+    margin-top: 2%;
+    margin-left: 40%;
+    background-color: gold;
+    font-size: 2em;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+#btnPlay:hover {
+    background-color: white;
+}
+
+.hidePlayButton {
+    display: none;
+}
+
+.showPlayButton {
+    display: block;
+}
+
+.hideStats {
+    display: none;
+}
+
+.showStats {
+    display: block;
+}
+
+.hideButtonBoard {
+    display: none;
+}
+
+.showButtonBoard {
+    display: block;
+}
+
+.gameButtonNeutral {
+    font-size: 2em;
+    background-color: beige;
+    height: 50px;
+    width: 80px;
+    margin: 5px;
+    border-width: 3px;
+}
+
+.gameButtonNeutral:hover {
+    background-color: white;
+}
+
+.gameButtonCrosses {
+    font-size: 2em;
+    background-color: green;
+    height: 50px;
+    width: 80px;
+    margin: 5px;
+    border-width: 3px;
+}
+
+.gameButtonNoughts {
+    font-size: 2em;
+    background-color: palevioletred;
+    height: 50px;
+    width: 80px;
+    margin: 5px;
+    border-width: 3px;
+}
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav>
+
+            <h1>Simple Noughts and Crosses</h1>
+            <p>A simple Noughts and Crosses (tic tac toe) game.</p>
+
+        </nav>
+
+        <main>
+
+            <section id="gameStats">
+
+                <label id="lblTurn">Current turn: [turn]</label>
+
+            </section>
+
+            <section id="game">
+
+                <button id="btnPlay">Play!</button>
+
+                <div id="buttonBoard">
+
+                    <div id="row1">
+
+                        <button id="btn0" class="gameButtonNeutral">N</button>
+                        <button id="btn1" class="gameButtonNeutral">N</button>
+                        <button id="btn2" class="gameButtonNeutral">N</button>
+
+                    </div>
+
+                    <div id="row2">
+
+                        <button id="btn3" class="gameButtonNeutral">N</button>
+                        <button id="btn4" class="gameButtonNeutral">N</button>
+                        <button id="btn5" class="gameButtonNeutral">N</button>
+
+                    </div>
+
+                    <div id="row3">
+
+                        <button id="btn6" class="gameButtonNeutral">N</button>
+                        <button id="btn7" class="gameButtonNeutral">N</button>
+                        <button id="btn8" class="gameButtonNeutral">N</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+        <footer>
+            <p>2026</p>
+        </footer>
+
+        <script>
+
+/*
+    Noughts and crosses script.js
+    January 23 2026
+    This is the main javascript for the noughts and crosses simple project.
+*/
+
+//  The different states the tiles go in.
+const neutral = 0;
+const player = 2;
+const cpu = -2;
+
+//  This represents the game board.
+var gameBoard = [
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0
+];
+
+//  The current turn.
+var currentTurn = 0;
+
+//  Is the game on?
+var gameOn = false;
+
+//  Checks for a win for the current player.
+function CheckVictory() {
+
+    if (gameOn == true) {
+
+        const buttonList = [
+            "btn0", "btn1", "btn2",
+            "btn3", "btn4", "btn5",
+            "btn6", "btn7", "btn8",
+        ];
+
+        //  The possible winning combinations.
+        //  This makes a sum of the current combinations to produce a score.
+        const topHorizontal = [gameBoard[0], gameBoard[1], gameBoard[2]].reduce((a, b) => a + b);
+        const middleHorizontal = [gameBoard[3], gameBoard[4], gameBoard[5]].reduce((a, b) => a + b);
+        const bottomHorizontal = [gameBoard[6], gameBoard[7], gameBoard[8]].reduce((a, b) => a + b);
+
+        const leftVertical = [gameBoard[0], gameBoard[3], gameBoard[6]].reduce((a, b) => a + b);
+        const middleVertical = [gameBoard[1], gameBoard[4], gameBoard[7]].reduce((a, b) => a + b);
+        const rightVertical = [gameBoard[2], gameBoard[5], gameBoard[8]].reduce((a, b) => a + b);
+
+        const topLeftBottomRight = [gameBoard[0], gameBoard[4], gameBoard[8]].reduce((a, b) => a + b);
+        const bottomLeftTopRight = [gameBoard[6], gameBoard[5], gameBoard[2]].reduce((a, b) => a + b);
+
+        const allPossibleWinningCombinations = [
+            topHorizontal, middleHorizontal, bottomHorizontal,
+            leftVertical, middleVertical, rightVertical,
+            topLeftBottomRight, bottomLeftTopRight
+        ];
+
+        const playerWinCount = 6;
+        const cpuWinCount = -6;
+
+        //  Loop through all fo the possible winning combinations and then see if 
+        //  player or CPU have won
+        for (let i = 0; i < allPossibleWinningCombinations.length; i++) {
+
+            if (allPossibleWinningCombinations[i] == playerWinCount) {
+
+                window.alert("Player wins!");
+                gameOn = false;
+
+                break;
+
+            }
+
+            if (allPossibleWinningCombinations[i] == cpuWinCount) {
+
+                window.alert("CPU wins!");
+                gameOn = false;
+
+                break;
+
+            }
+
+        }
+
+    }
+
+}
+
+//  Gets all available moves.
+function GetAvailableMoves() {
+
+    let avialableMoves = [];
+
+    for (let i = 0; i < gameBoard.length; i++) {
+
+        if (gameBoard[i] == 0) {
+
+            //  Push the available tile position
+            avialableMoves.push(i);
+
+        }
+
+    }
+
+    return avialableMoves;
+
+}
+
+//  The CPU's move.
+function CPUMove() {
+
+    if (gameOn == true) {
+
+        let avialableMoves = GetAvailableMoves();
+
+        //  Only move when there are moves available
+        if (avialableMoves.length) {
+
+            const randomCPUNumber = Math.floor(Math.random() * avialableMoves.length);
+
+            let tile = avialableMoves[randomCPUNumber];
+            
+            document.getElementById("btn" + tile).className = "";
+            document.getElementById("btn" + tile).className = "gameButtonNoughts";
+
+            document.getElementById("btn" + tile).textContent = "O";
+            document.getElementById("btn" + tile).disabled = true;
+
+            //  
+            gameBoard[tile] = cpu;
+
+            ChangeTurn();
+            
+        } 
+
+    }
+
+}
+
+//  The player's move.
+function PlayerMove(gridPosition) {
+
+    if (gameOn == true) {
+
+        if (gameBoard[gridPosition] == 0) {
+
+            gameBoard[gridPosition] = player;
+
+            document.getElementById("btn" + gridPosition).className = "";
+            document.getElementById("btn" + gridPosition).className = "gameButtonCrosses";
+
+            document.getElementById("btn" + gridPosition).textContent = "X";
+
+            document.getElementById("btn" + gridPosition).disabled = true;
+
+        }
+
+        ChangeTurn();
+        
+    }
+
+}
+
+//  Changes the current turn.
+function ChangeTurn() {
+
+    if (gameOn == true) {
+
+        CheckVictory();
+
+        if (currentTurn == player) {
+
+            currentTurn = cpu;
+            CPUMove();
+
+        } else {
+
+            currentTurn = player;
+
+        }
+
+    }
+
+}
+
+//  Runs the game
+function init() {
+
+    gameOn = false;
+
+    document.getElementById("buttonBoard").className = "";
+    document.getElementById("buttonBoard").className = "hideButtonBoard";
+
+    document.getElementById("gameStats").className = "";
+    document.getElementById("gameStats").className = "hideStats";
+
+    //  The play button
+    document.getElementById("btnPlay").addEventListener("click", function(){
+
+        gameOn = true;
+
+        document.getElementById("buttonBoard").className = "";
+        document.getElementById("buttonBoard").className = "showButtonBoard";
+
+        document.getElementById("gameStats").className = "";
+        document.getElementById("gameStats").className = "showStats";
+
+        document.getElementById(this.id).className = "";
+        document.getElementById(this.id).className = "hidePlayButton";
+
+        //  Decide who gets to take the first turn.
+        const startingCoinFlip = Math.floor(Math.random() * 100);
+
+        if (startingCoinFlip > 0 && startingCoinFlip < 50) {
+
+            //  x start
+            currentTurn = player;
+
+        } else {
+
+            //  0 start
+            currentTurn = cpu;
+            CPUMove();
+
+        }
+
+    });
+
+    for (i = 0; i < 9; i++) {
+
+        //  Sets the tile position of the button
+        document.getElementById("btn" + i).setAttribute("data-gridPosition", i);
+
+        document.getElementById("btn" + i).className = "";
+        document.getElementById("btn" + i).className = "gameButtonNeutral";
+
+        //  The button click event.
+        document.getElementById("btn" + i).addEventListener("click", function() {
+
+            if (gameOn == true) {
+
+                PlayerMove(this.getAttribute("data-gridPosition"));
+
+            }
+
+        });
+        
+    }
+
+}
+
+init();
+
+        </script>
+
+    </body>
+
+</html>

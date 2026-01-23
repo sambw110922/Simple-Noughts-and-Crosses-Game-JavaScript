@@ -1,0 +1,108 @@
+
+/*
+    Noughts crosses style
+    January 18 2026
+    This is the main style sheet for the noughts and crosses simple game.
+*/
+
+html, body {
+    background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+nav {
+    text-align: center;
+    background-color: skyblue;
+    padding: 5%;
+    margin: 0;
+}
+
+main {
+    padding: 2%;
+}
+
+#game, footer {
+    text-align: center;
+}
+
+footer {
+    padding: 5%;
+    margin: 5%;
+}
+
+#buttonBoard {
+    padding: 2%;
+    margin: 5px; 
+    background-color: black;
+}
+
+#btnPlay {
+    padding: 2%;
+    margin-top: 2%;
+    background-color: gold;
+    font-size: 2em;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+#btnPlay:hover {
+    background-color: white;
+}
+
+.hidePlayButton {
+    display: none;
+}
+
+.showPlayButton {
+    display: block;
+}
+
+.hideStats {
+    display: none;
+}
+
+.showStats {
+    display: block;
+}
+
+.hideButtonBoard {
+    display: none;
+}
+
+.showButtonBoard {
+    display: block;
+}
+
+.gameButtonNeutral {
+    font-size: 2em;
+    background-color: beige;
+    height: 50px;
+    width: 80px;
+    margin: 5px;
+    border-width: 3px;
+}
+
+.gameButtonNeutral:hover {
+    background-color: white;
+}
+
+.gameButtonCrosses {
+    font-size: 2em;
+    background-color: green;
+    height: 50px;
+    width: 80px;
+    margin: 5px;
+    border-width: 3px;
+}
+
+.gameButtonNoughts {
+    font-size: 2em;
+    background-color: palevioletred;
+    height: 50px;
+    width: 80px;
+    margin: 5px;
+    border-width: 3px;
+}
