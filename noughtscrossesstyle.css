@@ -6,7 +6,7 @@
 */
 
 html, body {
-    background-color: whitesmoke;
+    background-color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin: 0;
@@ -14,7 +14,6 @@ html, body {
 
 nav {
     text-align: center;
-    background-color: skyblue;
     padding: 5%;
     margin: 0;
 }
@@ -34,47 +33,34 @@ footer {
 
 #buttonBoard {
     padding: 2%;
-    margin: 5px; 
-    background-color: black;
+    margin-left: 10%; 
+    width: 75%;
 }
 
 #btnPlay {
     padding: 2%;
     margin-top: 2%;
-    background-color: gold;
+    background-color: royalblue;
+    color: white;
     font-size: 2em;
     border-style: solid;
     border-width: 1px;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 #btnPlay:hover {
     background-color: white;
+    color: black;
 }
 
-.hidePlayButton {
+.hidePlayButton, .hideStats, .hideButtonBoard {
     display: none;
 }
 
-.showPlayButton {
+.showPlayButton, .showStats, .showButtonBoard {
     display: block;
 }
 
-.hideStats {
-    display: none;
-}
-
-.showStats {
-    display: block;
-}
-
-.hideButtonBoard {
-    display: none;
-}
-
-.showButtonBoard {
-    display: block;
-}
 
 .gameButtonNeutral {
     font-size: 2em;
@@ -82,7 +68,9 @@ footer {
     height: 50px;
     width: 80px;
     margin: 5px;
-    border-width: 3px;
+    border-style: none;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .gameButtonNeutral:hover {
@@ -91,18 +79,22 @@ footer {
 
 .gameButtonCrosses {
     font-size: 2em;
-    background-color: green;
+    background-color: lightgreen;
     height: 50px;
     width: 80px;
     margin: 5px;
-    border-width: 3px;
+    border-style: none;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .gameButtonNoughts {
     font-size: 2em;
-    background-color: palevioletred;
+    background-color: lightcoral;
     height: 50px;
     width: 80px;
     margin: 5px;
-    border-width: 3px;
+    border-style: none;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px black;
 }
