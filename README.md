@@ -8,9 +8,8 @@ This is a simple Noughts and Crosses (tic tac toe) game that I made using HTML a
 Includes
 
 1. noughtscrossesgame.html – the html page
-2. noughtscrossessimple_mobileTest.html – a html that contains all the code and styles.
-3. noughtscrosseslogic.js – the JavaScript file that contains the game logic.
-4. noughtscrossesstyle.css – the CSS style sheet that contains the CSS style.
+2. noughtscrosseslogic.js – the JavaScript file that contains the game logic.
+3. noughtscrossesstyle.css – the CSS style sheet that contains the CSS style.
 
 Instructions
 
