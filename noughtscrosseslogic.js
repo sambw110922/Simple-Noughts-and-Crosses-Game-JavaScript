@@ -182,15 +182,12 @@ function ChangeTurn() {
 }
 
 //  Runs the game
-function init() {
+function startGame() {
 
     gameOn = false;
 
     document.getElementById("buttonBoard").className = "";
     document.getElementById("buttonBoard").className = "hideButtonBoard";
-
-    document.getElementById("gameStats").className = "";
-    document.getElementById("gameStats").className = "hideStats";
 
     //  The play button
     document.getElementById("btnPlay").addEventListener("click", function(){
@@ -199,9 +196,6 @@ function init() {
 
         document.getElementById("buttonBoard").className = "";
         document.getElementById("buttonBoard").className = "showButtonBoard";
-
-        document.getElementById("gameStats").className = "";
-        document.getElementById("gameStats").className = "showStats";
 
         document.getElementById(this.id).className = "";
         document.getElementById(this.id).className = "hidePlayButton";
@@ -247,4 +241,4 @@ function init() {
 
 }
 
-init();
+startGame();
